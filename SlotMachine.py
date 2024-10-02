@@ -2,8 +2,8 @@ import random
 
 def spin_row():
     symbols = ['🍇', '🍊', '🥝', '🔔', '💵']
-    
-    return[random.choice(symbols) for _ in range(3)]
+    weights = [10, 10, 5, 1, 0.1] 
+    return random.choices(symbols, weights=weights, k=3)
 
 def print_row(row):
     print("**************")
@@ -25,12 +25,14 @@ def get_payout(row, bet):
     return 0
 
 def main():
-    balance = 100
 
     print("******************************")
     print("   Welcome to Slot Machine")
     print("  Symbols: 🍇 🍊 🥝 🔔 💵")
     print("******************************")
+
+    deposit = int(input("How much would you like to deposit? "))
+    balance = deposit
 
     while balance > 0:
         print(f"Current balance: 💲{balance}")
@@ -46,8 +48,10 @@ def main():
         if bet > balance:
             print("Insufficient Balance")
             continue
+
         if bet <= 0:
             print("Bet must be grater than 0")
+            continue
 
         balance -= bet
 
@@ -58,18 +62,24 @@ def main():
         payout = get_payout(row, bet)
 
         if payout > 0:
-            print(f"You won 💲{payout}")
+            print(f"You won💲{payout}")
         else:
             print("Sorry you lost this round")
 
         balance += payout
 
-        play_again = input("Do you want to play again? (Y/N): ").upper()
-
-        if play_again != 'Y':
+        if balance <= 0:
+            print("You are now broke")
             break
 
-    print(f"Game over! Your final balance is 💲{balance}")
+        play_again = input(f"You have💲{balance} Do you want to play again? (Y/N): ").upper()
+
+        if play_again == 'Y':
+            continue
+
+        else:
+            print("Thank you for playing!")
+            break
 
 if __name__ == '__main__':
     main()
