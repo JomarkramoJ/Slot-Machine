@@ -55,7 +55,21 @@ def main():
         print("Spinning...\n")
         print_row(row)
 
-        peyout = get_payout(row, bet)
+        payout = get_payout(row, bet)
+
+        if payout > 0:
+            print(f"You won 💲{payout}")
+        else:
+            print("Sorry you lost this round")
+
+        balance += payout
+
+        play_again = input("Do you want to play again? (Y/N): ").upper()
+
+        if play_again != 'Y':
+            break
+
+    print(f"Game over! Your final balance is 💲{balance}")
 
 if __name__ == '__main__':
     main()
