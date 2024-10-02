@@ -1,5 +1,9 @@
+import random
+
 def spin_row():
-    pass
+    symbols = ['🍇', '🍊', '🥝', '🔔', '💵']
+    
+    return[random.choice(symbols) for _ in range(3)]
 
 def print_row():
     pass
