@@ -24,6 +24,12 @@ def get_payout(row, bet):
             return bet * 20
     return 0
 
+def spinning_effect():
+    symbols = ['🍇', '🍊', '🥝', '🔔', '💵']
+    for _ in range(4):
+        row = random.choices(symbols, k=3) 
+        print_row(row)
+
 def main():
 
     print("******************************")
@@ -55,8 +61,10 @@ def main():
 
         balance -= bet
 
-        row = spin_row()
+        
         print("Spinning...\n")
+        spinning_effect()
+        row = spin_row()
         print_row(row)
 
         payout = get_payout(row, bet)
