@@ -83,11 +83,23 @@ def main():
             payout = get_payout(row, bet)
 
             if payout > 0:
-                print(f"You won💲{payout}", f"Current balance: 💲{balance}")
+                print(f"You won💲{payout}")
             else:
                 print("Sorry you lost this round")
 
             balance += payout
+            round_count += 1
+
+            if balance <= 0:
+                print("You are now broke.")
+                break
+
+            if round_count < rounds:
+                print(f"Remaining consecutive rounds: {rounds - round_count}")
+                print(f"Current balance: 💲{balance}")
+            else:
+                print("Consecutive rounds complete.")
+                break
 
         if balance <= 0:
             print("You are now broke")
