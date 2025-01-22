@@ -61,7 +61,6 @@ def main():
 
         balance -= bet
 
-        
         print("Spinning...\n")
         spinning_effect()
         row = spin_row()
