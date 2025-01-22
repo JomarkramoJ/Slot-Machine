@@ -71,7 +71,10 @@ def main():
                 rounds = 1
             else:
                 rounds = int(rounds)
-        
+        elif consecutive == 'N':
+            print("Defaulting to one round.")
+            rounds = 1
+             
         round_count = 0
         while balance > 0 and round_count < rounds:
             balance -= bet
@@ -101,7 +104,7 @@ def main():
                 print(f"Remaining consecutive rounds: {rounds - round_count}")
                 print(f"Current balance: 💲{balance}")
             else:
-                print("Consecutive rounds complete.")
+                print("Rounds complete.")
                 break
 
         if balance <= 0:
