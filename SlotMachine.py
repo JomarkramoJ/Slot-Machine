@@ -84,6 +84,9 @@ def main():
 
             if payout > 0:
                 print(f"You won💲{payout}")
+                balance += payout
+                print(f"Stopping consecutive betting due to a win. Current balance: 💲{balance}")
+                break
             else:
                 print("Sorry you lost this round")
 
