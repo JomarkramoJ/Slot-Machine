@@ -1,4 +1,5 @@
 import random
+import time
 
 def spin_row():
     symbols = ['🍇', '🍊', '🥝', '🔔', '💵']
@@ -29,6 +30,7 @@ def spinning_effect():
     for _ in range(4):
         row = random.choices(symbols, k=3) 
         print_row(row)
+        time.sleep(0.5)
 
 def main():
 
