@@ -61,21 +61,33 @@ def main():
             print("Bet must be grater than 0")
             continue
 
-        balance -= bet
+        consecutive = input("Do you want to enable consecutive betting? (Y/N): ").upper()
+        if  consecutive == 'Y':
+            rounds = input("Enter the number of consecutive rounds (or 'max' to bet until balance is depleted): ").lower()
+            if rounds == 'max':
+                rounds = float('inf')
+            elif not rounds.isdigit() or int(rounds) <= 0:
+                print("Invalid input for consecutive rounds. Defaulting to one round.")
+                rounds = 1
+            else:
+                rounds = int(rounds)
+        
+        round_count = 0
+        while balance > 0 and round_count < rounds:
+            balance -= bet
+            print("Spinning...\n")
+            spinning_effect()
+            row = spin_row()
+            print_row(row)
 
-        print("Spinning...\n")
-        spinning_effect()
-        row = spin_row()
-        print_row(row)
+            payout = get_payout(row, bet)
 
-        payout = get_payout(row, bet)
+            if payout > 0:
+                print(f"You won💲{payout}", f"Current balance: 💲{balance}")
+            else:
+                print("Sorry you lost this round")
 
-        if payout > 0:
-            print(f"You won💲{payout}")
-        else:
-            print("Sorry you lost this round")
-
-        balance += payout
+            balance += payout
 
         if balance <= 0:
             print("You are now broke")
